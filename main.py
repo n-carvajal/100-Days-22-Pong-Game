@@ -20,7 +20,7 @@ paddle_hit = mixer.Sound("paddle_beep.wav")
 
 # Setup screen.
 screen = Screen()
-screen.setup(width=1600, height=800)
+screen.setup(width=1440, height=800)
 screen.bgcolor("dark green")
 screen.tracer(0)
 
@@ -119,7 +119,7 @@ while not game_over:
             ball.setheading(360 - ball.heading())
 
         # Detect paddle 1 collision by comparing xcor and ycor of ball and paddle.  Bounce ball if True.
-        if p1.xcor() - ball.xcor() > -20 and abs(ball.ycor() - p1.ycor()) < 50:
+        if p1.xcor() + 40 > ball.xcor() and abs(ball.ycor() - p1.ycor()) < 100:
             paddle_hit.play()
             ball.setheading(180 - ball.heading())
             rally_length += 1
@@ -128,7 +128,7 @@ while not game_over:
                 time_delay -= 0.01
 
         # Detect paddle 2 collision by comparing xcor and ycor of ball and paddle.  Bounce ball if True.
-        if p2.xcor() - ball.xcor() < 20 and abs(ball.ycor() - p2.ycor()) < 50:
+        if p2.xcor() - 40 < ball.xcor() and abs(ball.ycor() - p2.ycor()) < 100:
             paddle_hit.play()
             ball.setheading(180 - ball.heading())
             rally_length += 1
@@ -137,7 +137,7 @@ while not game_over:
                 time_delay -= 0.01
 
         # Detect if p1 has scored a goal by checking if ball x-coordinate is greater than 780.
-        if ball.xcor() > 780:
+        if ball.xcor() > 720:
             p1_score += 1
             p1_scoreboard.clear()
             p1_scoreboard.create(p1_scoreboard_position, p1, p1_score)
@@ -145,7 +145,7 @@ while not game_over:
             goal = True
 
         # Detect if p2 has scored a goal by checking if ball x-coordinate is less than -780.
-        if ball.xcor() < -780:
+        if ball.xcor() < -720:
             p2_score += 1
             p2_scoreboard.clear()
             p2_scoreboard.create(p2_scoreboard_position, p2, p2_score)

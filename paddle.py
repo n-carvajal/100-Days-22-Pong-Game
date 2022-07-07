@@ -26,7 +26,7 @@ class Paddle(Turtle):
         self.color(colour)
         self.penup()
         self.shape("square")
-        self.turtlesize(stretch_wid=5, stretch_len=1)
+        self.turtlesize(stretch_wid=10, stretch_len=1)
 
     def spawn(self, position):
         """
@@ -42,7 +42,7 @@ class Paddle(Turtle):
         It does so by moving the Paddle object up 20 units on the y-axis until the y-axis value reaches 320.
         Then it stops.
         """
-        if self.ycor() <= 320:
+        if self.ycor() <= 280:
             self.goto((self.xcor(), self.ycor() + 20))
 
     def move_down(self):
@@ -52,5 +52,5 @@ class Paddle(Turtle):
         It does so by moving the Paddle object down 20 units on the y-axis until the y-axis value reaches -320.
         Then it stops.
         """
-        if self.ycor() >= -320:
+        if self.ycor() >= -280:
             self.goto((self.xcor(), self.ycor() - 20))
