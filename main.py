@@ -67,7 +67,7 @@ starting_player = p1
 score_to_win = 10
 
 # Set rally length at which to speed up the ball.
-speed_up = 10
+speed_up = 2
 
 # Start listening for key presses.
 screen.listen()
@@ -125,7 +125,7 @@ while not game_over:
             rally_length += 1
             # Check if rally length speed up value reached.  Increase ball speed if True.
             if rally_length % speed_up == 0:
-                time_delay -= 0.01
+                time_delay *= 0.75
 
         # Detect paddle 2 collision by comparing xcor and ycor of ball and paddle.  Bounce ball if True.
         if p2.xcor() - 40 < ball.xcor() and abs(ball.ycor() - p2.ycor()) < 100:
@@ -134,10 +134,10 @@ while not game_over:
             rally_length += 1
             # Check if rally length speed up value reached.  Increase ball speed if True.
             if rally_length % speed_up == 0:
-                time_delay -= 0.01
+                time_delay *= 0.75
 
         # Detect if p1 has scored a goal by checking if ball x-coordinate is greater than 780.
-        if ball.xcor() > 720:
+        if ball.xcor() > 700:
             p1_score += 1
             p1_scoreboard.clear()
             p1_scoreboard.create(p1_scoreboard_position, p1, p1_score)
@@ -145,7 +145,7 @@ while not game_over:
             goal = True
 
         # Detect if p2 has scored a goal by checking if ball x-coordinate is less than -780.
-        if ball.xcor() < -720:
+        if ball.xcor() < -700:
             p2_score += 1
             p2_scoreboard.clear()
             p2_scoreboard.create(p2_scoreboard_position, p2, p2_score)
